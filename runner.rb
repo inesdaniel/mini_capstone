@@ -22,8 +22,18 @@ require 'unirest'
 # )
 # p response.body
 
+# update action
+p "Enter item to update:"
+product_id = gets.chomp
 
-response = Unirest.patch("http://localhost:3000/api/products/6")
+response = Unirest.patch("http://localhost:3000/api/products/#{product_id}",
+  parameters: {
+    input_name: gets.chomp,
+    input_description: gets.chomp,
+    input_price: gets.chomp,
+    input_image_url: gets.chomp
+    }
+  )
 
 
 p response.body
@@ -31,3 +41,4 @@ p response.body
     # input_description: params[:input_description],
     # input_price: params[:input_price],
     # input_image_url: params[:input_image_url]
+

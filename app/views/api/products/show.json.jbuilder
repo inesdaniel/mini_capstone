@@ -1,4 +1,4 @@
-json.first_product @product1
+json.product @product1
 
 # json.id product.id
 # json.name product.name
