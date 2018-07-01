@@ -23,22 +23,21 @@ require 'unirest'
 # p response.body
 
 # update action
-p "Enter item to update:"
+# p "Enter item to update:"
+# product_id = gets.chomp
+# response = Unirest.patch("http://localhost:3000/api/products/#{product_id}",
+#   parameters: {
+#     input_name: gets.chomp,
+#     input_description: gets.chomp,
+#     input_price: gets.chomp,
+#     input_image_url: gets.chomp
+#     }
+#   )
+# p response.body
+
+
+#delete action
+p "Enter item you want to delete"
 product_id = gets.chomp
-
-response = Unirest.patch("http://localhost:3000/api/products/#{product_id}",
-  parameters: {
-    input_name: gets.chomp,
-    input_description: gets.chomp,
-    input_price: gets.chomp,
-    input_image_url: gets.chomp
-    }
-  )
-
-
+response = Unirest.delete("http://localhost:3000/api/products/#{product_id}")
 p response.body
-    # input_name: params[:input_name],
-    # input_description: params[:input_description],
-    # input_price: params[:input_price],
-    # input_image_url: params[:input_image_url]
-
