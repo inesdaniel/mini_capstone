@@ -8,5 +8,6 @@ json.formatted do
   json.discounted product.discounted?
   json.tax product.tax
   json.total product.total
+  json.supplier product.supplier.name 
 end
 
