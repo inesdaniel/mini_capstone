@@ -2,7 +2,7 @@ class Api::ProductsController < ApplicationController
   def index
     user_input = params[:api_search]
     if user_input
-      @products = Product.where('name LIKE ?', "%#{user_input}%").order(:price) 
+      @products = Product.where('LOWER(name) LIKE ?', "%#{user_input.downcase}%").order(:price) 
     else 
       @products = Product.all.order(:price) 
     end
