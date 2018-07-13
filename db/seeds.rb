@@ -17,10 +17,18 @@
 
 
 #link product with a random supplier
-suppliers = Supplier.all
-products = Product.all
+# suppliers = Supplier.all
+# products = Product.all
 
-products.each do |product|
-  product.supplier_id = suppliers.sample.id #going to supplier, picking out sample supplier, assigning id
-  product.save
-end
+# products.each do |product|
+#   product.supplier_id = suppliers.sample.id #going to supplier, picking out sample supplier, assigning id
+#   product.save
+# end
+
+
+# products = Product.all
+# images = Image.all
+
+# images.each do |image|
+#   image.product_id =
+# end 

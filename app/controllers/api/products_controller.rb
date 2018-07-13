@@ -19,7 +19,6 @@ class Api::ProductsController < ApplicationController
     @product = Product.new(
         name: params[:input_name],
         price: params[:input_price],
-        image_url: params[:input_image_url],
         description: params[:input_description],
         stocked: params[:input_stocked]
       )
@@ -32,7 +31,6 @@ class Api::ProductsController < ApplicationController
     @product = Product.find_by(id:product_id)
     @product.name = params[:input_name] || @product.name
     @product.price = params[:input_price] || @product.price
-    @product.image_url = params[:input_image_url] || @product.image_url
     @product.description = params[:input_description] || @product.description
     @product.stocked = params[:input_stocked] || @product.stocked
     @product.save
