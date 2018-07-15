@@ -26,6 +26,8 @@
 # end
 
 
+
+
 # products = Product.all
 # images = Image.all
 
