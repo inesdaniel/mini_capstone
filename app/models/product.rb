@@ -1,4 +1,8 @@
 class Product < ApplicationRecord
+  belongs_to :supplier
+  has_many :images 
+  has_many :orders # product can be in a bunch of orders by diff users
+
   def discounted?
     price < 4
   end
@@ -10,11 +14,11 @@ class Product < ApplicationRecord
     price + tax
   end
 
-  def supplier
-    Supplier.find_by(id: supplier_id)
-  end
+  # def supplier
+  #   Supplier.find_by(id: supplier_id)
+  # end
 
-  def image
-    Image.all 
-  end
+  # def image
+  #   Image.all 
+  # end
 end

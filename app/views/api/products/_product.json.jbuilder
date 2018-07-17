@@ -9,5 +9,5 @@ json.formatted do
   json.total product.total
 end
 json.supplier product.supplier 
-json.image product.image 
+json.images product.images
 

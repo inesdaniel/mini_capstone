@@ -1,5 +1,6 @@
 class Api::ProductsController < ApplicationController
   def index
+    p current_user 
     user_input = params[:api_search]
     if user_input
       @products = Product.where('LOWER(name) LIKE ?', "%#{user_input.downcase}%").order(:price) 

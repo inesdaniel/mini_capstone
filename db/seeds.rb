@@ -34,3 +34,5 @@
 # images.each do |image|
 #   image.product_id =
 # end 
+
+order1 = Order.create(user_id: 1, product_id: 3, quantity: 2)
