@@ -1,11 +1,18 @@
 class Api::ProductsController < ApplicationController
   def index
-    p current_user 
-    user_input = params[:api_search]
-    if user_input
-      @products = Product.where('LOWER(name) LIKE ?', "%#{user_input.downcase}%").order(:price) 
-    else 
-      @products = Product.all.order(:price) 
+    # p current_user 
+    # user_input = params[:api_search]
+    # if user_input
+    #   @products = Product.where('LOWER(name) LIKE ?', "%#{user_input.downcase}%").order(:price) 
+    # else 
+    #   @products = Product.all.order(:price) 
+    # end
+    if params[:category]
+      category = Category.find_by(name: params[:category])
+      p category
+      @products = category.products
+    else
+      @products = Product.all 
     end
     render "index.json.jbuilder"
   end 
@@ -21,7 +28,8 @@ class Api::ProductsController < ApplicationController
         name: params[:input_name],
         price: params[:input_price],
         description: params[:input_description],
-        stocked: params[:input_stocked]
+        stocked: params[:input_stocked],
+        supplier_id: params[:supplier_id]
       )
     @product.save
     render "show.json.jbuilder"

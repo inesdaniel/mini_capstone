@@ -19,7 +19,6 @@
 #link product with a random supplier
 # suppliers = Supplier.all
 # products = Product.all
-
 # products.each do |product|
 #   product.supplier_id = suppliers.sample.id #going to supplier, picking out sample supplier, assigning id
 #   product.save
@@ -27,12 +26,30 @@
 
 
 
-
+#create random images for products
 # products = Product.all
-# images = Image.all
+# products.each do |product|
+#   Image.create(first_image: Faker::Avatar.image, product_id: product.id)
+# end
 
-# images.each do |image|
-#   image.product_id =
-# end 
 
-order1 = Order.create(user_id: 1, product_id: 3, quantity: 2)
+
+
+# create order
+# order1 = Order.create(user_id: 1, product_id: 3, quantity: 2)
+
+
+#associate category and products?
+
+categories = Category.all
+products = Product.all
+
+products.each do |product|
+  product.category_id = categories.sample.id 
+end
+
+
+
+
+
+
