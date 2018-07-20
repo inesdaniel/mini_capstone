@@ -4,8 +4,6 @@ json.product_id @carted_product.product_id
 json.quantity @carted_product.quantity
 json.status @carted_product.status
 
-
-# json.product @carted_product.product
-json.product do
-  json.partial! carted_product.product, partial: 'product', as: :product
-end
+# json.product do
+#   json.partial! @carted_product.product, partial: 'product', as: :product
+# end

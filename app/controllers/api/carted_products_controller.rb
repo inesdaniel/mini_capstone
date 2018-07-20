@@ -3,13 +3,14 @@ class Api::CartedProductsController < ApplicationController
     #find the product? 
     # product = Product.find_by(id: params[:product_id])
   
-    @carted_products = Carted_Product.new(
+    @carted_product = CartedProduct.new(
       user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
+      product_id: params[:input_product_id],
+      quantity: params[:input_quantity],
       status: "carted"
     )
-    @carted_products.save
+    @carted_product.save
     render "show.json.jbuilder"
   end
+
 end
