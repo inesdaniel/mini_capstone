@@ -29,10 +29,13 @@ class Api::ProductsController < ApplicationController
         price: params[:input_price],
         description: params[:input_description],
         stocked: params[:input_stocked],
-        supplier_id: params[:supplier_id]
+        supplier_id: params[:input_supplier_id]
       )
-    @product.save
-    render "show.json.jbuilder"
+    if @product.save
+      render "show.json.jbuilder"
+    else
+      render json: {errors: @product.errors.full_messages}, status: :unprocessible_entity
+    end
   end
 
   def update
@@ -42,8 +45,13 @@ class Api::ProductsController < ApplicationController
     @product.price = params[:input_price] || @product.price
     @product.description = params[:input_description] || @product.description
     @product.stocked = params[:input_stocked] || @product.stocked
-    @product.save
-    render "show.json.jbuilder"
+
+    if @product.save
+      render "show.json.jbuilder"
+    else
+      render json: {errors: @product.errors.full_messages}, status: :unprocessible_entity
+    end
+
   end
 
   def destroy
