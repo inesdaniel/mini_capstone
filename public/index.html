@@ -20,6 +20,9 @@
       <a href="/#/signup">Signup</a>
       <a href="/#/login">Login</a>
       <a href="/#/logout">Logout</a>
+      <a href="/#/products/new">New Product</a>
+      <a href="/#/shopping_cart">Shopping Cart</a>
+
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/#/">Products</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,6 +74,110 @@
   </body>
 </html>
 
+<template id="show-page">
+  <div class="vue-component">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name}}</h5>
+              <p class="card-text">{{ product.description}}</p>
+                <p class="id">id: {{ product.id }}</p>
+                <p class="price"> Price: {{ product.price }} </p>
+                <p class="tax">Tax: {{ product.formatted.tax}}</p>
+                <p class="total">Total: {{ product.formatted.total }}</p>
+                <p class="stocked">Stocked: {{ product.stocked }}</p>
+    
+                <a v-bind:href="'/#/products/' + product.id" class="btn btn-primary">View Product</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</template>
+
+<template id="orders-page">
+  <div class="vue-component">
+    <div v-for="product in products">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ order.id}}</h5>
+                <p class="id">user id: {{ order.user_id} }}</p>
+                <p class="price"> Subtotal: {{ order.subtotal }} </p>
+                <p class="tax">Tax: {{ order.tax}}</p>
+                <p class="total">Total: {{ order.total }}</p>
+                <p class="stocked">User: {{ order.user }}</p>
+                <img style="width: 100px;height: 100px;" v-bind:src="product.images">
+                <a v-bind:href="'/#/products/' + product.id" class="btn btn-primary">View Product</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="shopping-cart-page">
+  <div class="vue-component">
+    <div v-for="product in products">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name}}</h5>
+              <p class="card-text">{{ product.description}}</p>
+                <p class="id">id: {{ product.id }}</p>
+                <p class="price"> Price: {{ product.price }} </p>
+                <p class="tax">Tax: {{ product.formatted.tax}}</p>
+                <p class="total">Total: {{ product.formatted.total }}</p>
+                <p class="stocked">Stocked: {{ product.stocked }}</p>
+                <img style="width: 100px;height: 100px;" v-bind:src="product.images">
+                <a v-bind:href="'/#/products/' + product.id" class="btn btn-primary">View Product</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="new-product-page">
+  <div class="vue-component">
+
+    <div class="container">
+      <h1>Make a new product</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name:</label> 
+        <input type="text" class="form-control" v-model="name">
+      </div>
+      <div class="form-group">
+        <label>Description:</label>
+        <input type="text" class="form-control" v-model="description">
+      </div>
+      <div class="form-group">
+        <label>Price:</label>
+        <input type="text" class="form-control" v-model="price">
+      </div>
+      <div class="form-group">
+        <label>Stocked:</label>
+        <input type="text" class="form-control" v-model="stocked">
+      </div>
+      <div class="form-group">
+        <label>Supplier:</label>
+        <input type="text" class="form-control" v-model="supplier">
+      </div>
+      
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+
+  </div>
+</template>
+
 <template id="home-page">
   <div class="vue-component">
     <div v-for="product in products">
@@ -86,7 +193,7 @@
                 <p class="total">Total: {{ product.formatted.total }}</p>
                 <p class="stocked">Stocked: {{ product.stocked }}</p>
                 <img style="width: 100px;height: 100px;" v-bind:src="product.images">
-                <a href="/#/sample" class="btn btn-primary">View Product</a>
+                <a v-bind:href="'/#/products/' + product.id" class="btn btn-primary">View Product</a>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  belongs_to :supplier
+  belongs_to :supplier, optional: true
   has_many :images 
   has_many :orders # product can be in a bunch of orders by diff users
   has_many :category_products
@@ -7,12 +7,12 @@ class Product < ApplicationRecord
 
   has_many :carted_products
 
-  validates :name, presence: true
-  validates :name, uniqueness: true
-  validates :price, presence: true
-  validates :price, numericality: { greater_than: 0 }
-  validates :description, presence: true
-  validates :description, length: { in: 10..500 }
+  # validates :name, presence: true
+  # validates :name, uniqueness: true
+  # validates :price, presence: true
+  # validates :price, numericality: { greater_than: 0 }
+  # validates :description, presence: true
+  # validates :description, length: { in: 10..500 }
 
 
   def discounted?
