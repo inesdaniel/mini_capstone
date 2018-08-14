@@ -1,4 +1,51 @@
 /* global Vue, VueRouter, axios */
+var ProductEditPage = {
+  template: "#product-edit-page",
+  data: function() {
+    return {
+      name: "",
+      description: "",
+      price: "",
+      stocked: "",
+      supplier: "",
+      errors: []
+    };
+  },
+  methods: {
+    submit: function() {
+      var params = {
+        input_name: this.name,
+        input_description: this.description,
+        input_price: this.price,
+        input_stocked: this.stocked,
+        input_supplier_id: this.input_supplier_id
+      };
+      axios
+        .patch("/api/products/" + this.$route.params.id, params)
+        .then(function(response) {
+          router.push("/");
+        }).catch(function(error) {
+          this.errors = error.response.data.errors;
+        }.bind(this));
+    }
+  },
+  created: function() {
+    console.log('in created function for edit page');
+    console.log(this.$route.params.id); //prints out id
+
+    axios.get("/api/products/" + this.$route.params.id).then(function(response) {
+      console.log(response);
+      // this.product = response.data; ---> can't use this because multiple variables define above instead of an object
+      this.name = response.data.name;
+      this.description = response.data.description;
+      this.price = response.data.price;
+      this.stocked = response.data.stocked;
+      this.supplier = response.data.supplier;
+
+    }.bind(this));
+  }
+};
+
 var ProductShowPage = {
   template: "#show-page",
   data: function() {
@@ -194,12 +241,11 @@ var router = new VueRouter({
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
-    { path: "/products/new", component: NewProductPage },
     { path: "/shopping_cart", component: ShoppingCartPage },
     { path: "/orders", component: OrdersPage },
-    { path: "/products/:id", component: ProductShowPage }
-
-
+    { path: "/products/new", component: NewProductPage },
+    { path: "/products/:id", component: ProductShowPage },
+    { path: "/products/:id/edit", component: ProductEditPage }
 
   ],
   scrollBehavior: function(to, from, savedPosition) {
