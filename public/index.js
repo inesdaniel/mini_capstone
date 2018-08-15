@@ -145,7 +145,9 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      products: []
+      products: [],
+      sortAttribute: "",
+      sortOrder: 1
     };
   },
   created: function() {
@@ -156,7 +158,15 @@ var HomePage = {
       this.products = response.data;
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    setSortAttribute: function(attribute) {
+      this.sortAttribute = attribute;
+    },
+    toggleSortOrder: function() {
+      console.log('toggleling sort order');
+      this.sortOrder = this.sortOrder * -1;
+    }
+  },
   computed: {}
 };
 

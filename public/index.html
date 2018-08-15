@@ -10,6 +10,7 @@
 
     <title>Products!</title>
    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue2-filters/dist/vue2-filters.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.js"></script>
     <script src="index.js" defer></script>
@@ -215,7 +216,11 @@
 
 <template id="home-page">
   <div class="vue-component">
-    <div v-for="product in products">
+    Search: 
+    <button v-on:click="setSortAttribute('name')">Sort by Name</button>
+    <button v-on:click="setSortAttribute('id')">Sort by Id</button>
+    <button v-on:click="toggleSortOrder()">Toggle Order</button>
+    <div v-for="product in orderBy(products, sortAttribute, sortOrder)">
       <div class="row">
         <div class="col">
           <div class="card">
