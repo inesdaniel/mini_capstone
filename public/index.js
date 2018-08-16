@@ -146,6 +146,7 @@ var HomePage = {
     return {
       message: "Welcome to Vue.js!",
       products: [],
+      nameFilter: "",
       sortAttribute: "",
       sortOrder: 1
     };
